@@ -25,7 +25,7 @@ func main() {
 		fmt.Println(err)
 	}
 
-	app.UseCache = true
+	app.UseCache = false
 	app.IsProduction = false
 	repo := handlers.NewRepo(&app)
 	handlers.NewHandler(repo)
