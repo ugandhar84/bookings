@@ -2,14 +2,14 @@ package main
 
 import (
 	"fmt"
+	"github.com/ugandhar84/bookings/internal/config"
+	"github.com/ugandhar84/bookings/internal/handlers"
+	"github.com/ugandhar84/bookings/internal/render"
 	"log"
 	"net/http"
 	"time"
 
 	"github.com/alexedwards/scs/v2"
-	"github.com/ugandhar84/bookings/pkg/config"
-	"github.com/ugandhar84/bookings/pkg/handlers"
-	"github.com/ugandhar84/bookings/pkg/render"
 )
 
 var PortNumber string = ":8090"

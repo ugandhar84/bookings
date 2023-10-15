@@ -46,7 +46,38 @@
 
                    </form>
                 `
-        attention.custom({msg:customhtml, title:"Check for dates"})
+        attention.custom({
+            msg:customhtml,
+            title:"Check for dates",
+            callback: function (result){
+                console.log("called");
+                let form = document.getElementById("check-availability-form")
+                let formData = new FormData(form)
+                formData.append("csrf_token", {{.CSRFToken}})
+                fetch('/search-availability-json', {method: "post", body:formData})
+                    .then(response=>response.json())
+                    .then(data =>{
+                        console.log(data.ok);
+                        console.log(data.message);
+
+                    })
+            },
+            willOpen: () =>{
+                const elem = document.getElementById('reservation-dates-model');
+                const rp = new DateRangePicker(elem, {
+                    format: 'yyyy-mm-dd',
+                    showOnFocus:true,
+                    todayHighlight:true,
+                    updateOnBlur:true,
+                });
+            },
+            didOpen: () =>{
+                let st =document.getElementById('start')
+                st.removeAttribute('disabled')
+                let st1 = document.getElementById('end')
+                st1.removeAttribute('disabled')
+            },
+        })
     })
 </script>
 

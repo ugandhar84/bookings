@@ -4,13 +4,13 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/justinas/nosurf"
+	"github.com/ugandhar84/bookings/internal/config"
 	"html/template"
 	"log"
 	"net/http"
 	"path/filepath"
 
 	"github.com/ugandhar84/bookings/models"
-	"github.com/ugandhar84/bookings/pkg/config"
 )
 
 // TemplateData Holds data from templates
