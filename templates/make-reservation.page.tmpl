@@ -3,8 +3,14 @@
 <div class="container">
     <h1>Make a Reservation</h1>
     <h6><em>Reservation details</em></h6>
-    <form class="row g-3 needs-validation" novalidate >
+    <form class="row g-3" method="post" novalidate action="">
+        <input type="hidden" value="{{.CSRFToken}}" name="csrf_token">
+
+
         <div class="col-md-6">
+            {{with .Form.Errors.Get "first_name"}}
+                <label class="text-bg-danger">{{.}}</label>
+            {{end}}
             <input type="text" required class="form-control" id="first_name" placeholder="First Name">
         </div>
         <div class="col-md-6">

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/ugandhar84/bookings/internal/config"
+	"github.com/ugandhar84/bookings/internal/forms"
 	"github.com/ugandhar84/bookings/internal/render"
 	"log"
 	"net/http"
@@ -88,7 +89,7 @@ func (m *Repository) PostAvailability(w http.ResponseWriter, r *http.Request) {
 }
 
 type jsonResponse struct {
-	OK      bool   `json:"ok""`
+	OK      bool   `json:"ok"`
 	Message string `json:"message"`
 }
 
@@ -110,10 +111,39 @@ func (m *Repository) AvailabilityJSON(w http.ResponseWriter, r *http.Request) {
 }
 
 func (m *Repository) Reservations(w http.ResponseWriter, r *http.Request) {
-	stringMap := make(map[string]string)
-	remoteIP := m.App.Session.GetString(r.Context(), "remote_ip")
-	stringMap["test"] = "Hello String"
-	stringMap["remote_ip"] = remoteIP
 
-	render.RenderTemplate(w, r, "reservations.page.tmpl", &models.TemplateData{StringMap: stringMap})
+	render.RenderTemplate(w, r, "make-reservation.page.tmpl", &models.TemplateData{
+		Form: forms.New(nil),
+	})
+}
+
+// PostReservations handles the posting of reservation form
+func (m *Repository) PostReservations(w http.ResponseWriter, r *http.Request) {
+	log.Println("This is Post Reservations")
+	err := r.ParseForm()
+	if err != nil {
+		log.Println("where am i")
+		return
+	}
+	reservation := models.Reservation{
+
+		FirstName: r.Form.Get("first_name"),
+		LastName:  r.Form.Get("last_name"),
+		Email:     r.Form.Get("email"),
+		Phone:     r.Form.Get("mobile"),
+	}
+	form := forms.New(r.PostForm)
+	log.Println(r.PostForm)
+	form.Has("first_name", r)
+
+	if !form.Valid() {
+		data := make(map[string]interface{})
+		data["reservation"] = reservation
+		log.Println(reservation)
+		log.Println(data)
+		render.RenderTemplate(w, r, "make-reservation.page.tmpl", &models.TemplateData{
+			Form: form,
+			Data: data,
+		})
+	}
 }
