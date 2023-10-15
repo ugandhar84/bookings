@@ -1,0 +1,21 @@
+.my-footer {
+    background-color: green;
+    margin-top: 1em;
+    height: 5em;
+    background-color: black;
+    font-style: italic;
+    color: white;
+    font-size: 80%;
+    padding: 1em;
+
+}
+
+div:where(.swal2-container) .swal2-html-container {
+    /* Your custom styles go here */
+    z-index: 10000 !important;
+    overflow: unset !important;
+    /* Add !important to each property you want to override */
+}
+.room-image {
+    max-width: 50%;
+}

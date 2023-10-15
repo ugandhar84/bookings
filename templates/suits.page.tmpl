@@ -1,0 +1,52 @@
+{{template "base" .}}
+{{define "content"}}
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <img src="/static/images/marjors-suite.png" class="img-fluid img-thumbnail rounded room-image">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center mt-4">Welcome to R&B hotels</h1>
+            <p>
+                Your home away from home.Your home away from home.Your home away from home.Your home away from home.Your home away from home.Your home away from home.Your home away from home.Your home away from home.Your home away from home.
+                Your home away from home.Your home away from home.Your home away from home.Your home away from home.
+                Your home away from home.Your home away from home.Your home away from home.
+                Your home away from home.Your home away from home.
+                Your home away from homeYour home away from homeYour home away from homeYour home away from homeYour home away from home
+            </p>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <a id="check-availability-button" href="#!" class="btn btn-success">Check Availability</a>
+        </div>
+    </div>
+</div>
+
+{{end}}
+{{define "js"}}
+    <script>
+
+        document.getElementById("check-availability-button").addEventListener('click', function () {
+            //   notifyModel("title", '<em>Hello World</em>',"success","my text for the button")
+            let customhtml = `<form action="" method="post" novalidate class="needs-validation" id="check-availability-form">
+                        <div class="col">
+                          <div class="row" id="reservation-dates-model">
+                            <div class="col">
+                              <input type="text" required disabled class="form-control" placeholder="Arrival Date" aria-label="Arrival Date" autocomplete="off" id="start">
+                            </div>
+                            <div class="col">
+                              <input type="text" required disabled class="form-control" placeholder="Departure Date" aria-label="Departure Date" autocomplete="off" id="end">                         </div>
+                        </div>
+                      </div>
+
+                   </form>
+                `
+            attention.custom({msg:customhtml, title:"Check for dates"})
+        })
+    </script>
+
+{{end}}
