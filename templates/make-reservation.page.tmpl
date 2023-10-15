@@ -11,16 +11,16 @@
             {{with .Form.Errors.Get "first_name"}}
                 <label class="text-bg-danger">{{.}}</label>
             {{end}}
-            <input type="text" required class="form-control" id="first_name" placeholder="First Name">
+            <label for="first_name"></label><input type="text" required class="form-control" id="first_name" placeholder="First Name">
         </div>
         <div class="col-md-6">
-            <input type="text" required class="form-control" id="last_name" placeholder="Last Name">
+            <label for="last_name"></label><input type="text" required class="form-control" id="last_name" placeholder="Last Name">
         </div>
         <div class="col-md-6">
-            <input type="email"  required class="form-control" id="email_address" placeholder="Email Address">
+            <label for="email_address"></label><input type="email" required class="form-control" id="email_address" placeholder="Email Address">
         </div>
         <div class="col-md-6">
-            <input type="tel" required class="form-control" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="mobile" placeholder="Mobile Number: 123-456-7890">
+            <label for="mobile"></label><input type="tel" required class="form-control" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="mobile" placeholder="Mobile Number: 123-456-7890">
         </div>
 
         <div class="col-12">
